@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.1.0'
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 group 'com.cflox'
 version '1.0'
@@ -10,14 +13,17 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:3.1.0'
-    implementation 'org.projectlombok:lombok:1.18.28'
-    annotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.projectlombok:lombok'
+    runtimeOnly 'org.hsqldb:hsqldb'
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter:'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
 }
 
 jar {

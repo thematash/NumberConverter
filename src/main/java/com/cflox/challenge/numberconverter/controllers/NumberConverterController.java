@@ -1,5 +1,6 @@
 package com.cflox.challenge.numberconverter.controllers;
 
+import com.cflox.challenge.numberconverter.audit.AuditService;
 import com.cflox.challenge.numberconverter.common.enums.DataFormat;
 import com.cflox.challenge.numberconverter.services.ConvertersRegistry;
 import com.cflox.challenge.numberconverter.services.NumberConverter;
@@ -19,6 +20,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 public class NumberConverterController {
 
     private final ConvertersRegistry convertersRegistry;
+    private final AuditService auditService;
 
     @GetMapping("/convert/number")
     public ResponseEntity<String> convertNumber(@RequestParam String inputNumber,
@@ -38,6 +40,7 @@ public class NumberConverterController {
         }
 
         String result = numberConverter.convert(inputNumber);
+        auditService.saveAuditRecord(inputNumber, inputFormat, outputFormat, result);
 
         return ResponseEntity.ok(result);
 
