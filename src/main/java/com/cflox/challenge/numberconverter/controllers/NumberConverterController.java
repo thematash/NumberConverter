@@ -45,6 +45,6 @@ public class NumberConverterController {
 
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
     public ResponseEntity<String> argumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        return ResponseEntity.badRequest().body("Cannot convert " + ex.getValue() + " to required type");
+        return ResponseEntity.badRequest().body("Cannot convert value " + ex.getValue() + " to supported types");
     }
 }
