@@ -19,10 +19,7 @@ public class DecimalToRomanConverter implements NumberConverter {
 
     @Override
     public String convert(String input) {
-        // can be reimplemented using BigInteger to support longer numbers,
-        // but for 999999999999 conversion took 40s and returned 15.7 million characters in response,
-        // so maybe 'long' is enough, though
-        long num = Long.parseLong(input);
+        int num = Integer.parseInt(input);
 
         StringBuilder result = new StringBuilder();
         int digitCounter = table.length - 1;
@@ -43,16 +40,16 @@ public class DecimalToRomanConverter implements NumberConverter {
 
     @Override
     public boolean validate(String input) {
-
-        // TODO actual limitations can be discussed further, this is more of an example
-        if (input.length() > String.valueOf(Long.MAX_VALUE).length()
-                || !input.matches("^[0-9]+$")
-                || input.equals("0")) {
+        if (input.length() > 4
+                || !input.matches("^[0-9]+$")) { // how to convert zero - need to be discussed
             return false;
         }
 
         try {
-            Long.parseLong(input);
+            int val = Integer.parseInt(input);
+            if (val > 3999) {
+                return false;
+            }
         } catch (NumberFormatException ex) {
             return false;
         }
