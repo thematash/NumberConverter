@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Slf4j
 @RestController
@@ -23,6 +24,7 @@ public class NumberConverterController {
     private final AuditService auditService;
 
     @GetMapping("/convert/number")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> convertNumber(@RequestParam String inputNumber,
                                                 @RequestParam DataFormat inputFormat,
                                                 @RequestParam DataFormat outputFormat) {
